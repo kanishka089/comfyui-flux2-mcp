@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "comfyui-flux2-mcp"
+version = "0.1.0"
+description = "MCP server that lets Claude generate and edit images via a local ComfyUI + FLUX.2 Klein 9B install"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "kanishka089" }]
+keywords = ["mcp", "claude", "comfyui", "flux", "flux2", "image-generation"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "mcp>=1.2",
+    "requests>=2.31",
+    "python-dotenv>=1.0",
+]
+
+[project.scripts]
+comfyui-flux2-mcp = "server:main"
+
+[project.urls]
+Homepage = "https://github.com/kanishka089/comfyui-flux2-mcp"
+Issues = "https://github.com/kanishka089/comfyui-flux2-mcp/issues"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+py-modules = ["server", "config", "comfy_client"]
+
+[tool.setuptools.package-data]
+"" = ["templates/*.json"]

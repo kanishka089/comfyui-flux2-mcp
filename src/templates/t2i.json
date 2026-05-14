@@ -1,0 +1,16 @@
+{
+  "prompt": {
+    "1": {"inputs": {"unet_name": "flux-2-klein-9b-Q4_K_S.gguf"}, "class_type": "UnetLoaderGGUF"},
+    "2": {"inputs": {"clip_name": "qwen_3_8b_fp8mixed.safetensors", "type": "flux2", "device": "default"}, "class_type": "CLIPLoader"},
+    "3": {"inputs": {"vae_name": "flux2-vae.safetensors"}, "class_type": "VAELoader"},
+    "4": {"inputs": {"clip": ["2", 0], "text": "A photograph of a serene Sri Lankan tea plantation at sunrise, mist rolling between rows of bushes, soft golden light, ultra detailed, cinematic"}, "class_type": "CLIPTextEncode"},
+    "5": {"inputs": {"width": 1024, "height": 1024, "batch_size": 1}, "class_type": "EmptyFlux2LatentImage"},
+    "6": {"inputs": {"steps": 4, "width": 1024, "height": 1024}, "class_type": "Flux2Scheduler"},
+    "7": {"inputs": {"sampler_name": "euler"}, "class_type": "KSamplerSelect"},
+    "8": {"inputs": {"model": ["1", 0], "conditioning": ["4", 0]}, "class_type": "BasicGuider"},
+    "9": {"inputs": {"noise_seed": 123456789}, "class_type": "RandomNoise"},
+    "10": {"inputs": {"noise": ["9", 0], "guider": ["8", 0], "sampler": ["7", 0], "sigmas": ["6", 0], "latent_image": ["5", 0]}, "class_type": "SamplerCustomAdvanced"},
+    "11": {"inputs": {"samples": ["10", 0], "vae": ["3", 0]}, "class_type": "VAEDecode"},
+    "12": {"inputs": {"images": ["11", 0], "filename_prefix": "Flux2-Klein"}, "class_type": "SaveImage"}
+  }
+}

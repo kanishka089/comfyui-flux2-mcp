@@ -1,0 +1,23 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+.env
+.env.local
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.DS_Store
+Thumbs.db
+
+# Local test outputs
+output/
+test_output/
+*.png
+*.jpg
+*.jpeg
+!docs/**/*.png
+!docs/**/*.jpg
